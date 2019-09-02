@@ -51,6 +51,14 @@ class App extends React.Component {
   //   this.props.addTask(this.state.task)
   // }
 
+  clearCompleted = () => {
+    this.setState({
+      todo: this.state.todo.filter(task => {
+        return !task.completed
+      })
+    })
+  }
+
   addTask = taskName => {
     const newTask ={
       task: taskName,
@@ -67,7 +75,7 @@ class App extends React.Component {
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoList {...this.state} clickHandler={this.clickHandler}/>
-        <TodoForm addTask={this.addTask}/>
+        <TodoForm clearCompleted={this.clearCompleted} addTask={this.addTask} />
       </div>
     );
   }

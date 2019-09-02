@@ -15,7 +15,10 @@ class TodoFormList extends React.Component {
 
   submitItem = event => {
     event.preventDefault();
-    this.props.addTask(this.state.task)
+    this.props.addTask(this.state.task);
+    this.setState({
+      task: ''
+    })
   }
 
   render() {
@@ -25,11 +28,13 @@ class TodoFormList extends React.Component {
           type='text'
           value={this.state.task}
           name='task'
-          placeholder='task'
           onChange={this.handleChanges}
         />
-        <button>Add Todo</button>
-        
+        <button >Add Todo</button>
+        <button onClick={(e) => {
+          e.preventDefault(); 
+          this.props.clearCompleted();
+        }}>Clear Completed</button>
       </form>
     )
   }
