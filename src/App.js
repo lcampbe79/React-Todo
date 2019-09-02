@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import './components/TodoComponents/Todo.css'
 import TodoList from './components/TodoComponents/TodoList.js'
+import TodoForm from './components/TodoComponents/TodoForm'
 
 const TodoData = [
   {
@@ -38,11 +39,18 @@ class App extends React.Component {
       })
     })
   }
+
+  handleChanges = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoList {...this.state} clickHandler={this.clickHandler}/>
+        <TodoForm {...this.state} onChange={this.handleChanges}/>
       </div>
     );
   }
