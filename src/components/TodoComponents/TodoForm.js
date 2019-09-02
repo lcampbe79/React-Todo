@@ -7,17 +7,29 @@ class TodoFormList extends React.Component {
       task: ''
     };
   }
+  handleChanges = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  submitItem = event => {
+    event.preventDefault();
+    this.props.addTask(this.state.task)
+  }
+
   render() {
     return(
-      <form>
-        <input
+      <form onSubmit={this.submitItem}>
+        <input 
           type='text'
           value={this.state.task}
           name='task'
+          placeholder='task'
           onChange={this.handleChanges}
         />
         <button>Add Todo</button>
-        <button>Clear Completed</button>
+        
       </form>
     )
   }
